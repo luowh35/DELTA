@@ -1,0 +1,22 @@
+2024-08-01 00:30:57,793 - INFO - 
+    =====================================================================================
+     DELTA: Differential Evolution Algorithm for Large-scale Tailored Atomistic Structures
+     Version: 0.0.1
+     arthor: Wenhao Luo
+     Description: A Package for searching min Energy for Large-scale Atomistic Structures
+    =====================================================================================
+    
+2024-08-01 00:30:57,793 - INFO - 
+   _ .-') _     ('-.            .-') _      ('-.     
+  ( (  OO) )  _(  OO)          (  OO) )    ( OO ).-. 
+   \     .'_ (,------.,--.     /     '._   / . --. / 
+   ,`'--..._) |  .---'|  |.-') |'--...__)  | \-.  \  
+   |  |  \  ' |  |    |  | OO )'--.  .--'.-'-'  |  | 
+   |  |   ' |(|  '--. |  |`-' |   |  |    \| |_.'  | 
+   |  |   / : |  .--'(|  '---.'   |  |     |  .-.  | 
+   |  '--'  / |  `---.|      |    |  |     |  | |  | 
+   `-------'  `------'`------'    `--'     `--' `--' 
+    
+2024-08-01 00:30:57,793 - INFO - {'input_file': './input/POSCAR', 'output_dir': './out', 'atoms': 64, 'total': 264, 'pop_size': 4, 'generation': 5, 'mpi_tasks': 1, 'CR_start': 0.8, 'CR_end': 0.2, 'F_start': 0.8, 'F_end': 0.2, 'restart': 0}
+2024-08-01 00:30:57,793 - WARNING - YOU SET MPI_TASKS FOR 1, THAT MEANS YOUR TASKS ARE EXECUTED ONE AFTER ANOTHER.
+2024-08-01 00:30:57,793 - WARNING - IN ORDER TO THE EFFICIENCY, YOU CAN SET PARRELL VERSION

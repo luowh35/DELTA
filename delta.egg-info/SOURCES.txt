@@ -1,0 +1,16 @@
+README.md
+setup.py
+delta/__init__.py
+delta/atom_processing.py
+delta/config.py
+delta/genetic_algorithm.py
+delta/lammps.py
+delta/logger.py
+delta/main.py
+delta/vasp.py
+delta.egg-info/PKG-INFO
+delta.egg-info/SOURCES.txt
+delta.egg-info/dependency_links.txt
+delta.egg-info/entry_points.txt
+delta.egg-info/requires.txt
+delta.egg-info/top_level.txt

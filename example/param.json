@@ -1,0 +1,14 @@
+{
+	"input_file" : "./input/POSCAR",
+	"output_dir" : "./out",
+	"atoms" : 64,
+	"total" : 264,
+	"pop_size" : 4,
+	"generation" : 5,
+	"mpi_tasks" : 1,
+	"CR_start" : 0.8,
+	"CR_end" : 0.2,
+	"F_start" : 0.8,
+	"F_end" : 0.2,
+	"restart" : 0
+}

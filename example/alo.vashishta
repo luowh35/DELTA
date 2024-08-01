@@ -1,0 +1,42 @@
+# DATE: 2015-10-14 CONTRIBUTOR: Aidan Thompson, athomps@sandia.gov CITATION: P. Vashishta, R. K. Kalia, A. Nakano, and J. P. Rino. J. Appl. Phys. 101, 103515 (2007).
+#
+# Vashishta potential file for SiC, P. Vashishta, R. K. Kalia, A. Nakano, 
+# and J. P. Rino. J. Appl. Phys. 101, 103515 (2007).
+#
+# These entries are in LAMMPS "metal" units:
+#   H = eV*Angstroms^eta; Zi, Zj = |e| (e = electronic charge); 
+#   lambda1, lambda4, rc, r0, gamma = Angstroms; 
+#   D = eV*Angstroms^4; W = eV*Angstroms^6; B = eV; 
+#   other quantities are unitless
+#
+#  Note: Value of D here equals D/2 in paper  
+#
+#  Note：the value of D is convert by consult to https://matsci.org/t/parameters-of-vashishta-potential-for-al2o3/31506/2
+#  https://docs.lammps.org/pair_vashishta.html
+# element1  element2  element3
+#           H  eta  Zi  Zj  lambda1  D  lambda4
+#           W  rc  B  gamma  r0  C  cos(theta)
+
+Al  Al  Al  12.7506  7  1.5237  1.5237  5.0  0.0  3.75
+            0.0  6.0  0.0  0.0  0.0  0.0  0.0
+
+O   O   O   564.7334  7  −1.0158  −1.0158  5.0  22.28985  3.75
+            79.2884  6.0  0.0  0.0  0.0  0.0  0.0
+
+O   Al  Al  249.3108  9  −1.0158  1.5237  5.0  25.0761  3.75
+            0.0  6.0  8.1149  1.0  2.90  10.0  -0.333333333333
+
+Al  O   O   249.3108  9  1.5237  -1.0158  5.0  25.0761  3.75
+            0.0  6.0  12.4844  1.0  2.90  10.0  0.0
+
+O   O   Al  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+            0.0  0.0  0.0  0.0  0.0  0.0  0.0            
+
+O   Al  O   0.0  0.0  0.0  0.0  0.0  0.0  0.0
+            0.0  0.0  0.0  0.0  0.0  0.0  0.0            
+
+Al  O   Al  0.0  0.0  0.0  0.0  0.0  0.0  0.0
+            0.0  0.0  0.0  0.0  0.0  0.0  0.0
+
+Al  Al  O   0.0  0.0  0.0  0.0  0.0  0.0  0.0
+            0.0  0.0  0.0  0.0  0.0  0.0  0.0

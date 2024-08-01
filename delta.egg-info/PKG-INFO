@@ -1,0 +1,13 @@
+Metadata-Version: 2.1
+Name: delta
+Version: 0.0.1
+Summary: DELTA: Differential Evolution Algorithm for Large-scale Tailored Atomistic Structures
+Home-page: https://github.com/luowh35/DELTA
+Author: Wenhao Luo
+Author-email: luowh35@mail2.sysu.edu.cn
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Requires-Dist: numpy
+Requires-Dist: ase
