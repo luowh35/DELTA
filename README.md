@@ -1,4 +1,4 @@
-# DELTA:Differential Evolution Algorithm for Large-scale Tailored Atomistic Structures
+# DELTA: Differential Evolution Algorithm for Large-scale Tailored Atomistic Structures
 
 ## Overview
 DELTA is a Python package designed to search for the minimum energy configurations of crystal structures using DDE algorithms and various computational chemistry tools. 
@@ -54,7 +54,7 @@ DELTA is a Python package designed to search for the minimum energy configuratio
     ```
     
 2. **Explanation of parameters**:
-    `input_file`: Path to the POSCAR, which is filled with all posible position.
+    `input_file`: Path to the POSCAR, which is filled with all possible positions.
 
     `output_dir`: Output director.
 
@@ -64,7 +64,7 @@ DELTA is a Python package designed to search for the minimum energy configuratio
 
     `pop_size`: The total population of each generation.
 
-    `generation`: The total genaration.
+    `generation`: The total generation.
 
     `mpi_tasks`: It determines how many tasks run at the same time.
 
@@ -72,7 +72,7 @@ DELTA is a Python package designed to search for the minimum energy configuratio
 
     `F_start` and `F_end`: The starting and ending Mutation Factor ​​of the DDE algorithm.
 
-    `restart`: The flag to set continue calculation, only can be set 0 or 1.
+    `restart`: The flag to set continue calculation, only can be set to 0 or 1.
 
     
 3. **Run the main script**:
