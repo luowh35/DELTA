@@ -30,7 +30,7 @@ DELTA is a Python package designed to search for the minimum energy configuratio
     ```
 
 ## how to use
-1. **start with the Al2O3 structure searching**:
+1. **Example for the Al2O3 structure searching**:
    ```sh
    cd example
    cat param.json
@@ -55,15 +55,25 @@ DELTA is a Python package designed to search for the minimum energy configuratio
     
 2. **Explanation of parameters**:
     `input_file`: Path to the POSCAR, which is filled with all posible position.
+
     `output_dir`: Output director.
+
     `atoms`: Real atoms, now only support Al.
+
     `total`: All the Al + vacancy.
+
     `pop_size`: The total population of each generation.
+
     `generation`: The total genaration.
+
     `mpi_tasks`: It determines how many tasks run at the same time.
+
     `CR_start` and `CR_end`: The starting and ending crossrate ​​of the DDE algorithm.
+
     `F_start` and `F_end`: The starting and ending Mutation Factor ​​of the DDE algorithm.
+
     `restart`: The flag to set continue calculation, only can be set 0 or 1.
+
     
 3. **Run the main script**:
     ```sh
