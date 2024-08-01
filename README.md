@@ -79,6 +79,8 @@ DELTA is a Python package designed to search for the minimum energy configuratio
     ```sh
     delta
     ```
+    Or use `nohup delta` to prevent printing log information to the screen.
+    
     You can also submit `delta` to the queue system, eg: PBS, Slurm.
     ```sh
     qsub rundelta.sh
