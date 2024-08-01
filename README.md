@@ -30,7 +30,7 @@ DELTA is a Python package designed to search for the minimum energy configuratio
     ```
 
 ## how to use
-1. **start with the Al2O3 structure searching **:
+1. **start with the Al2O3 structure searching**:
    ```sh
    cd example
    cat param.json
