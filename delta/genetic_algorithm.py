@@ -8,9 +8,9 @@ def initial_X(atoms=64, total=264, pop_size=10):
         "16c": (72, 120),
         "48f": (120, 264)
     }
+    
     def create_individual():
         x = np.zeros(total)
-        # 随机选择1到10之间的数量
         num_c = np.random.randint(1, 11)
         num_f = np.random.randint(1, 11)
         
@@ -24,8 +24,26 @@ def initial_X(atoms=64, total=264, pop_size=10):
         remaining_indices = np.random.choice(remaining_sections, remaining_atoms, replace=False)
         x[remaining_indices] = 1
         
+        current_ones = sum(x)
+        
+        if current_ones < atoms:
+            zeros_in_x = np.where(x == 0)[0]
+            while current_ones < atoms:
+                idx_to_flip = np.random.choice(zeros_in_x)
+                x[idx_to_flip] = 1
+                zeros_in_x = np.delete(zeros_in_x, np.where(zeros_in_x == idx_to_flip))
+                current_ones += 1
+                
+        elif current_ones > atoms:
+            ones_in_x = np.where(x == 1)[0]
+            while current_ones > atoms:
+                idx_to_flip = np.random.choice(ones_in_x)
+                x[idx_to_flip] = 0
+                ones_in_x = np.delete(ones_in_x, np.where(ones_in_x == idx_to_flip))
+                current_ones -= 1
+                
         return x
-
+    
     X = [create_individual() for _ in range(pop_size)]
     return X
 
@@ -50,6 +68,8 @@ def mutate(population, atoms, F):
     indivi = repair(donor, atoms)
     return indivi
 
+import numpy as np
+
 def repair(individual, atoms=64):
     sections = {
         "8a": (0, 24),
@@ -63,10 +83,18 @@ def repair(individual, atoms=64):
     while sum(individual[c_indices]) > 10:
         ones_in_c = np.where(individual[c_indices] == 1)[0] + sections["16c"][0]
         individual[np.random.choice(ones_in_c)] = 0
-        
+    
+    while sum(individual[c_indices]) < 1:
+        zeros_in_c = np.where(individual[c_indices] == 0)[0] + sections["16c"][0]
+        individual[np.random.choice(zeros_in_c)] = 1
+
     while sum(individual[f_indices]) > 10:
         ones_in_f = np.where(individual[f_indices] == 1)[0] + sections["48f"][0]
         individual[np.random.choice(ones_in_f)] = 0
+    
+    while sum(individual[f_indices]) < 1:
+        zeros_in_f = np.where(individual[f_indices] == 0)[0] + sections["48f"][0]
+        individual[np.random.choice(zeros_in_f)] = 1
     
     current_ones = sum(individual)
     
