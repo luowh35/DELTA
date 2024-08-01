@@ -16,7 +16,7 @@ DELTA is a Python package designed to search for the minimum energy configuratio
 1. **Create a virtual environment**:
     ```sh
     conda create -n delta python=3.9   #choose your python version and env name
-    conda activtae delta # 
+    conda activate delta # 
     ```
 2. **Clone the repository**:
     ```sh
