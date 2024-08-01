@@ -1,4 +1,4 @@
-# DELTA: Differential Evolution Algorithm for Large-scale Tailored Atomistic Structures
+# DELTA: Differential Evolution algorithm for Large-scale Tailored Atomistic structures
 
 ## Overview
 DELTA is a Python package designed to search for the minimum energy configurations of crystal structures using DDE algorithms and various computational chemistry tools. 
