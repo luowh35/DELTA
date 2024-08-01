@@ -36,7 +36,7 @@ DELTA is a Python package designed to search for the minimum energy configuratio
    cat param.json
    ```
    **Then you will get this output, which is about the input parameters**:
-    ```json
+    ```sh
 {
         "input_file" : "./input/POSCAR",
         "lammps_in_file": "./input/in.lammps",
@@ -67,7 +67,7 @@ DELTA is a Python package designed to search for the minimum energy configuratio
     `F_start` and `F_end`: The starting and ending Mutation Factor ​​of the DDE algorithm.
     `restart`: The flag to set continue calculation, only can be set 0 or 1.
     
-3. **Run the main script**:
+3.**Run the main script**:
     ```sh
     delta
     ```
