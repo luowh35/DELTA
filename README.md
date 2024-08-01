@@ -37,7 +37,6 @@ DELTA is a Python package designed to search for the minimum energy configuratio
    ```
    **Then you will get this output, which is about the input parameters**:
     ```sh
-{
         "input_file" : "./input/POSCAR",
         "lammps_in_file": "./input/in.lammps",
         "run_lammps_file": "./input/submit.sh",
@@ -52,10 +51,9 @@ DELTA is a Python package designed to search for the minimum energy configuratio
         "F_start" : 0.8,
         "F_end" : 0.2,
         "restart" : 0
-}
     ```
     
-2.**Explanation of parameters**:
+2. **Explanation of parameters**:
     `input_file`: Path to the POSCAR, which is filled with all posible position.
     `output_dir`: Output director.
     `atoms`: Real atoms, now only support Al.
@@ -67,7 +65,7 @@ DELTA is a Python package designed to search for the minimum energy configuratio
     `F_start` and `F_end`: The starting and ending Mutation Factor ​​of the DDE algorithm.
     `restart`: The flag to set continue calculation, only can be set 0 or 1.
     
-3.**Run the main script**:
+3. **Run the main script**:
     ```sh
     delta
     ```
