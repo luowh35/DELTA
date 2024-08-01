@@ -10,15 +10,22 @@ def initial_X(atoms=64, total=264, pop_size=10):
     }
     def create_individual():
         x = np.zeros(total)
-        c_indices = np.random.choice(range(sections["16c"][0], sections["16c"][1]), 10, replace=False)
+        # 随机选择1到10之间的数量
+        num_c = np.random.randint(1, 11)
+        num_f = np.random.randint(1, 11)
+        
+        c_indices = np.random.choice(range(sections["16c"][0], sections["16c"][1]), num_c, replace=False)
         x[c_indices] = 1
-        f_indices = np.random.choice(range(sections["48f"][0], sections["48f"][1]), 10, replace=False)
+        f_indices = np.random.choice(range(sections["48f"][0], sections["48f"][1]), num_f, replace=False)
         x[f_indices] = 1
-        remaining_atoms = atoms - 20
+        
+        remaining_atoms = atoms - (num_c + num_f)
         remaining_sections = list(range(sections["8a"][0], sections["8a"][1])) + list(range(sections["16d"][0], sections["16d"][1]))
         remaining_indices = np.random.choice(remaining_sections, remaining_atoms, replace=False)
         x[remaining_indices] = 1
+        
         return x
+
     X = [create_individual() for _ in range(pop_size)]
     return X
 
