@@ -43,7 +43,7 @@ def final_str(input_file, output_dir, x):
     output_file = os.path.join(output_dir, 'final_POSCAR')
     write(output_file, filtered_atoms, format='vasp')
 
-def process_generation(gen_dir, input_file, X, np=1):
+def process_generation(gen_dir, input_file, run_file, X, np=1):
     x2vasp(input_file, gen_dir, X)
     convert_all_poscars(gen_dir)
-    copy_and_run_tasks(gen_dir, np)
+    copy_and_run_tasks(gen_dir, run_file, np)

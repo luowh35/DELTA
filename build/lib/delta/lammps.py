@@ -1,3 +1,4 @@
+import time
 import os
 import shutil
 import subprocess
@@ -20,7 +21,7 @@ def convert_all_poscars(root_dir):
         if 'POSCAR' in filenames:
             convert_poscar_to_lammps(dirpath)
 
-def copy_and_run_tasks(gen_dir, np=1):
+def copy_and_run_tasks_cp(gen_dir, np=1):
     current_dir = os.getcwd()
     subdirs = [d for d in os.listdir(gen_dir) if os.path.isdir(os.path.join(gen_dir, d))]
     files_to_copy = ['in.lammps', 'submit.sh']
@@ -50,6 +51,65 @@ def copy_and_run_tasks(gen_dir, np=1):
                 logging.error(f"Task generated an exception: {e}")
 
     logging.info("All tasks completed.")
+
+def copy_and_run_tasks(gen_dir, files_to_copy, np=1):
+    subdirs = [d for d in os.listdir(gen_dir) if os.path.isdir(os.path.join(gen_dir, d))]
+    job_ids = []
+
+    def copy_and_run(subdir):
+        subdir_path = os.path.join(gen_dir, subdir)
+        
+        for file_name in files_to_copy:
+            src_file = os.path.abspath(file_name)
+            dest_file = os.path.join(subdir_path, os.path.basename(file_name))
+            if os.path.isdir(src_file):
+                logging.error(f"Source {src_file} is a directory, not a file.")
+                return
+            shutil.copy(src_file, dest_file)
+        
+        # Submit the PBS script using qsub
+        submit_script_path = os.path.join(subdir_path, 'submit.sh')
+        try:
+            result = subprocess.run(['qsub', os.path.abspath(submit_script_path)], cwd=subdir_path, check=True, capture_output=True, text=True)
+            job_id = result.stdout.strip().split('.')[0]  # Extract job ID
+            logging.info(f"Successfully submitted {submit_script_path} with job ID {job_id}")
+            job_ids.append(job_id)
+            logging.info(f"qsub output: {result.stdout.strip()}")
+        except subprocess.CalledProcessError as e:
+            logging.error(f"Error executing {submit_script_path}: {e}")
+            logging.error(f"stderr: {e.stderr.strip()}")
+        except FileNotFoundError as e:
+            logging.error(f"File not found: {e}")
+
+    with ThreadPoolExecutor(max_workers=np) as executor:
+        futures = [executor.submit(copy_and_run, subdir) for subdir in subdirs]
+        for future in as_completed(futures):
+            try:
+                future.result()
+            except Exception as e:
+                logging.error(f"Task generated an exception: {e}")
+
+    logging.info("All tasks completed.")
+    logging.info("Proceeding to post-submission steps...")
+
+    # Post-submission steps: wait for jobs to complete
+    wait_for_jobs_to_complete(job_ids)
+
+def wait_for_jobs_to_complete(job_ids):
+    logging.info("Waiting for all jobs to complete...")
+    while job_ids:
+        try:
+            result = subprocess.run(['qstat'], capture_output=True, text=True, check=True)
+            current_jobs = set(job_id for job_id in job_ids if job_id in result.stdout)
+            if not current_jobs:
+                logging.info("All jobs have completed.")
+                break
+            else:
+                logging.info("Jobs are still running. Checking again in 60 seconds...")
+        except subprocess.CalledProcessError as e:
+            logging.error(f"Error checking job status: {e}")
+        
+        time.sleep(30)
 
 def get_natom(task_dir):
     filepath = os.path.join(task_dir, 'relax.lammpstrj')

@@ -16,6 +16,8 @@ def main():
     param = load_config('param.json')
     logging.info(param)
     input_file = param['input_file']
+    run_lammps_file = param['run_lammps_file']
+    lammps_in_file = param['lammps_in_file']
     output_dir = param['output_dir']
     atoms = param['atoms']
     total = param['total']
@@ -27,6 +29,7 @@ def main():
     F_start = param['F_start']
     F_end = param['F_end']
     restart = param['restart']
+    run_file = [lammps_in_file, run_lammps_file]
 
     if mpi_tasks == 1:
         logging.warning(
@@ -41,7 +44,7 @@ def main():
         X = initial_X(atoms, total, pop_size)
         init_dir = os.path.join(output_dir, 'generation_0')
         os.makedirs(init_dir, exist_ok=True)
-        process_generation(init_dir, input_file, X, mpi_tasks)
+        process_generation(init_dir, input_file, run_file, X, mpi_tasks)
         E = get_tasks_energy(init_dir, pop_size)
         best_E = np.min(E)
         best_X = X[np.argmin(E)]
@@ -56,7 +59,7 @@ def main():
 
     for i in range(generation):
         logging.info(
-            f"----------------------Gen {i} START-------------------")
+            f"----------------------Gen { i + 1 } START-------------------")
         logging.info(
             f"Generation {i + 1} start, Total Generation {generation}")
         F = F_end + (F_start - F_end) * (1 - i / generation)
@@ -65,7 +68,7 @@ def main():
         new_X = renew_X(X, atoms, F, CR)
         gen_dir = os.path.join(output_dir, f'generation_{i + 1}')
         os.makedirs(gen_dir, exist_ok=True)
-        process_generation(gen_dir, input_file, new_X, mpi_tasks)
+        process_generation(gen_dir, input_file, run_file, new_X, mpi_tasks)
 
         new_E = get_tasks_energy(gen_dir, pop_size)
         new_X = np.array(new_X)
@@ -93,7 +96,7 @@ def main():
         logging.info(f"Generation {i + 1}: Best Fitness = {best_E:.2f}")
         final_str(input_file, output_dir, best_X)
         logging.info(
-            f"--------------------Gen {i} FINISHED-------------------")
+            f"--------------------Gen { i + 1 } FINISHED-------------------")
         write_restart(output_dir, X, E)
     logging.info(f"Best Fitness = {best_E:.2f}")
     logging.info(f"Best X = {best_X}")
