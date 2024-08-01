@@ -72,9 +72,9 @@ def copy_and_run_tasks(gen_dir, files_to_copy, np=1):
         try:
             result = subprocess.run(['qsub', os.path.abspath(submit_script_path)], cwd=subdir_path, check=True, capture_output=True, text=True)
             job_id = result.stdout.strip().split('.')[0]  # Extract job ID
-            logging.info(f"Successfully submitted {submit_script_path} with job ID {job_id}")
+            #logging.info(f"Successfully submitted {submit_script_path} with job ID {job_id}")
             job_ids.append(job_id)
-            logging.info(f"qsub output: {result.stdout.strip()}")
+            #logging.info(f"qsub output: {result.stdout.strip()}")
         except subprocess.CalledProcessError as e:
             logging.error(f"Error executing {submit_script_path}: {e}")
             logging.error(f"stderr: {e.stderr.strip()}")
@@ -109,7 +109,7 @@ def wait_for_jobs_to_complete(job_ids):
         except subprocess.CalledProcessError as e:
             logging.error(f"Error checking job status: {e}")
         
-        time.sleep(30)
+        time.sleep(60)
 
 def get_natom(task_dir):
     filepath = os.path.join(task_dir, 'relax.lammpstrj')

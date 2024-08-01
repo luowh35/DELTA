@@ -59,7 +59,7 @@ def main():
 
     for i in range(generation):
         logging.info(
-            f"----------------------Gen {i} START-------------------")
+            f"----------------------Gen { i + 1 } START-------------------")
         logging.info(
             f"Generation {i + 1} start, Total Generation {generation}")
         F = F_end + (F_start - F_end) * (1 - i / generation)
@@ -96,7 +96,7 @@ def main():
         logging.info(f"Generation {i + 1}: Best Fitness = {best_E:.2f}")
         final_str(input_file, output_dir, best_X)
         logging.info(
-            f"--------------------Gen {i} FINISHED-------------------")
+            f"--------------------Gen { i + 1 } FINISHED-------------------")
         write_restart(output_dir, X, E)
     logging.info(f"Best Fitness = {best_E:.2f}")
     logging.info(f"Best X = {best_X}")
