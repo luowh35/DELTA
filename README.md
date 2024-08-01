@@ -39,12 +39,14 @@ DELTA is a Python package designed to search for the minimum energy configuratio
     ```json
 {
         "input_file" : "./input/POSCAR",
+        "lammps_in_file": "./input/in.lammps",
+        "run_lammps_file": "./input/submit.sh",
         "output_dir" : "./out",
         "atoms" : 64,
         "total" : 264,
         "pop_size" : 4,
-        "generation" : 5,
-        "mpi_tasks" : 1,
+        "generation" : 3,
+        "mpi_tasks" : 4,
         "CR_start" : 0.8,
         "CR_end" : 0.2,
         "F_start" : 0.8,
